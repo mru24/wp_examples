@@ -1,0 +1,35 @@
+
+
+<label> Your Name (required) </label>
+    [text* your-name]
+
+<label> Your Email (required) </label>
+    [email* your-email]
+
+[submit class:btn class:btn-primary "Send"]
+
+
+<script type="text/javascript">
+  // ************ CONTACT FORM FLOATING LABEL ******************
+        //In case there is a preloaded value
+      $('input, textarea').each(function() {
+            if ($(this).val().length != 0) {
+                $(this).parent().siblings('label').addClass('active');
+            } else {
+                $(this).parent().siblings('label').removeClass('active');
+            }
+        });
+
+      $('input, textarea').focus(function() {
+        $(this).parent().siblings('label').addClass('active');
+        $(this).addClass('active');
+      });
+
+      $('input, textarea').focusout(function() {
+        if($(this).val().length == 0) {
+          $(this).parent().siblings('label').removeClass('active');
+          $(this).removeClass('active');
+        }
+      });
+  // ************ CONTACT FORM FLOATING LABEL END ***************
+</script>
