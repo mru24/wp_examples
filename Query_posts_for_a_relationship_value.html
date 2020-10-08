@@ -1,0 +1,64 @@
+<?php
+        /*
+         *  Query posts for a relationship value.
+         *  This method uses the meta_query LIKE to match the string "123" to the database value a:1:{i:0;s:3:"123";} (serialized array)
+         */
+
+				$documents = get_posts(array(
+					'post_type' => 'post',
+					'posts_per_page' => 3,
+					'meta_query' => array(
+						array(
+							'key' => 'post_expert', // name of custom field
+							'value' => '"' . get_the_ID() . '"',
+							'compare' => 'LIKE'
+						)
+					)
+				));
+				?>
+
+					<?php if( $documents ): ?>
+
+					<div class="container">
+
+					<?php $str =  get_the_title(); ?>
+					<h3>How some of <?php echo strtok($str, " "); ?>'s work has made an impact...</h3>
+
+						<div class="posts-content">
+
+						<?php foreach( $documents as $document ): ?>
+
+							<?php $bg_col = get_field('post_bg_col', $document->ID); ?>
+
+							<article class="anim" id="post-<?php the_ID(); ?>" <?php post_class(); ?> style="background-color:<?php if($bg_col) : ?>rgb(<?php echo $bg_col; ?>)<?php else : ?>#0a4976<?php endif; ?>;">
+								<a href="<?php the_permalink($document->ID); ?>">
+									<div class="post-text-content">
+										<h2>
+											<?php echo get_the_title($document->ID); ?>
+										</h2>
+									</div>
+
+									<!-- post thumbnail -->
+
+									<?php if ( has_post_thumbnail( $document->ID )) : ?>
+										<?php $thumbnail_url = wp_get_attachment_url( get_post_thumbnail_id( $document->ID ) ); ?>
+									<img src="<?php echo $thumbnail_url; ?>" />
+									<?php else : ?>
+									<div class="post-span-content">
+										<span class="underline"></span>
+									</div>
+									<?php endif; ?>
+
+									<div class="post-text-content">
+										<?php the_field('post_excerpt', $document->ID); ?>
+									</div>
+
+								</a>
+							</article>
+						<?php endforeach; ?>
+
+						</div>
+					</div>
+				</div>
+
+				<?php endif; ?>

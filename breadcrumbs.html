@@ -5,19 +5,19 @@
 				<?php if(is_single()) : ?>
 				<li>
 					<a href="/">Home</a>
-				</li>				
+				</li>
 				<li>
 					<a href="/news-events/">
 						News &amp; Events
 					</a>
-				</li>				
+				</li>
 				<li>
 					<?php the_title(); ?>
 				</li>
 				<?php elseif(is_home()) : ?>
 				<li>
 					<a href="/">Home</a>
-				</li>				
+				</li>
 				<li>
 					News &amp; Events
 				</li>
@@ -27,19 +27,19 @@
 				</li>
 				<li>
 					<a href="<?php echo get_the_permalink($post->post_parent); ?>"><?php echo get_the_title($post->post_parent); ?></a>
-				</li>				
+				</li>
 				<li>
 					<?php the_title(); ?>
-				</li>					
+				</li>
 				<?php else : ?>
 				<li>
 					<a href="/">Home</a>
-				</li>			
+				</li>
 				<li>
 					<?php the_title(); ?>
-				</li>				
+				</li>
 				<?php endif; ?>
-			</ul>			
+			</ul>
 		</div>
 	</div>
 </div>
