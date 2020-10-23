@@ -1,0 +1,25 @@
+<!-- Images in uploads/test directory -->
+
+<?php
+$uploads = wp_upload_dir();
+if ($dir = opendir($uploads['basedir'].'/test')) {
+	$images = array();
+	while (false !== ($file = readdir($dir))) {
+		if ($file != "." && $file != "..") {
+			$images[] = $file;
+		}
+	}
+	closedir($dir);
+}
+?>
+<div class="container">
+<?php
+echo '<ul>';
+foreach($images as $image) {
+	echo '<li><img src="';
+	echo $uploads['baseurl'].'/test/'.$image;
+	echo '" alt="" /></li>';
+}
+echo '</ul>';
+?>
+</div>
