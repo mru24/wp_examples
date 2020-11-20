@@ -1,0 +1,48 @@
+// MIXINS
+@mixin reset
+	margin: 0
+	padding: 0
+	box-sizing: border-box
+
+@mixin transition
+	transition: .4s
+
+@mixin transition-long
+	transition: .8s
+
+@mixin box-shadow
+	box-shadow: 0 0 15px #999
+
+@mixin inherit
+	font-family: inherit
+	font-size: inherit
+	font-weight: inherit
+	color: inherit
+
+@mixin xxl
+	@media only screen and (max-width: 1600px)
+		@content
+
+@mixin xl
+	@media only screen and (max-width: 1140px)
+		@content
+
+@mixin lg
+	@media only screen and (max-width: 1024px)
+		@content
+
+@mixin md
+	@media only screen and (max-width: 900px)
+		@content
+
+@mixin sm
+	@media only screen and (max-width: 768px)
+		@content
+
+@mixin xs
+	@media only screen and (max-width: 468px)
+		@content
+
+@mixin xxs
+	@media only screen and (max-width: 330px)
+		@content	

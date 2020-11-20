@@ -1,0 +1,369 @@
+
+@import colors.sass
+@import mixins.sass
+
+// TYPOGRAPHY
+body
+
+h1,h2
+	font-weight: 400
+h1
+
+h2
+
+h3
+
+h4
+
+p,li,a
+
+p
+
+ul
+
+li
+
+a
+
+.lead
+
+
+// GENERAL
+
+html,
+body
+	width: 100%
+
+body
+	overflow-x: hidden
+html
+	scroll-behavior: smooth
+
+.banner
+	position: relative
+	z-index: 5
+	padding: 20px 0
+	margin: 30px 0
+
+.slick-slide
+	cursor: grab
+	&:focus
+		outline: none !important
+
+.slick-track
+	display: flex
+	.slick-slide
+		display: flex
+		height: auto
+		align-items: center //optional
+		justify-content: center //optional
+
+.wedge
+	position: relative
+	padding: 60px 0
+	&::before,
+	&::after
+		position: absolute
+		z-index: 5
+		left: 0
+		content: ''
+	&.top-right-white
+		&::after
+			top: -29px
+			border-top: 30px solid transparent
+			border-right: 100vw solid white
+	&.bottom-left-lightgrey
+		&::before
+			bottom: -29px
+			border-bottom: 30px solid transparent
+			border-left: 100vw solid $lightgrey
+	&.top-right-lightgrey
+		&::after
+			top: -29px
+			border-top: 30px solid transparent
+			border-right: 100vw solid $lightgrey
+	&.bottom-left-lightblue
+		&::before
+			bottom: -29px
+			border-bottom: 30px solid transparent
+			border-left: 100vw solid $secondary
+	&.top-right-lightblue
+		&::after
+			top: -29px
+			border-top: 30px solid transparent
+			border-right: 100vw solid $secondary
+	&.top-right-darkblue
+		&::after
+			top: -29px
+			border-top: 30px solid transparent
+			border-right: 100vw solid $primary
+
+.menu-item-has-children
+	-webkit-user-select: none
+	-webkit-touch-callout: none
+
+hr
+	border: none
+	border-bottom: 2px solid $border
+
+.pagination-container
+	margin: -80px 0 90px
+	padding: 15px 0
+	// border-top: 2px solid $border
+	// border-bottom: 2px solid $border
+	a.next
+		display: inline-block
+		margin-left: 70px
+	a.prev
+		display: inline-block
+		margin-right: 70px
+
+
+		// PAGE LOADER
+#home-page-loader
+	position: fixed
+	z-index: 9999
+	top: 0
+	left: 0
+	right: 0
+	bottom: 0
+	@include transition-long
+	&.hidden
+		opacity: 0 !important
+		pointer-events: none
+	.content
+		width: 100%
+		height: 100%
+		display: flex
+		justify-content: center
+		align-items: center
+		.image
+			width: 60%
+			height: 60%
+			background-size: contain !important
+
+
+// LAYOUT
+.row
+	display: flex
+	@include sm // max-width: 768px
+		display: block
+	.col
+		flex: 1
+		margin: 0 15px
+		&:first-child
+			margin-left: 0
+		&:last-child
+			margin-right: 0
+		@include sm
+			margin: 0
+
+.text-center
+	text-align: center
+.text-left
+	text-align: left
+.text-right
+	text-align: right
+
+.image
+	background-size: cover
+	background-position: center
+	background-repeat: no-repeat
+
+.square-box
+	width: 100%
+	padding-bottom: 100%
+	position: relative
+	.image
+		position: absolute
+		top: 0
+		left: 0
+		right: 0
+		bottom: 0
+
+.clear-both
+	clear: both
+	padding: 40px 0
+
+.anim
+	@include transition-long
+	transform: translateY(150px)
+	@include md // max-width: 900px
+		transform: translateY(80px)
+	&.go
+		transform: translateY(0)
+
+// BREADCRUMBS
+.breadcrumbs
+	&.wedge
+		padding: 40px 0 0
+		margin-bottom: 60px
+		margin-top: -1px
+		@include md // max-width: 900px
+			padding: 5px 0 0
+	.container
+		padding: 20px 0
+		border-bottom: 2px solid $border
+		display: flex
+		flex-direction: row
+		justify-content: space-between
+		ul
+			@include reset
+			display: inline-block
+			list-style: none
+			li
+				display: inline-block
+				padding: 0 25px 0 0
+				a
+					display: inline-block
+					position: relative
+					&::after
+						position: absolute
+						right: -20px
+						color: $dark
+						content: '>'
+				&.last-item
+					a
+						&::after
+							display: none
+		.go-back
+			display: inline-block
+			text-align: right
+			min-width: 65px
+			margin-left: 10px
+			@include xs // max-width: 468px
+				display: none
+			span.arrow-left
+				position: relative
+				top: -4px
+
+// BUTTONS
+.btn
+	@include reset
+	padding: 10px 30px
+	text-transform: uppercase
+	display: inline-block
+	border: 2px solid transparent
+	background: transparent
+	@include transition
+	@include lg // max-width: 1024px
+		padding: 6px 20px
+	&.btn-default
+		color: white
+		border-color: rgba($light, 0.5)
+		&:hover
+			background: white
+			color: $primary
+			border-color: $secondary
+	&.btn-primary
+		color: white
+		background: $primary
+		border-color: $primary
+		&:hover
+			background: white
+			color: $primary
+			border-color: $primary
+	&.btn-secondary
+		color: white
+		background: $secondary
+		border-color: $secondary
+		&:hover
+			background: white
+			color: $secondary
+			border-color: $secondary
+
+// NAVBAR
+
+
+
+// CONTACT PAGE FORM
+
+form
+	input[type="text"],
+	input[type="email"],
+	input[type="tel"],
+	input[type="date"],
+	select
+		width: 100%
+		border: none
+		border-radius: 2px
+		height: 30px
+		color: #999
+		padding: 0 5px
+		background: $light
+	select[name="time"]
+		position: relative
+		top: 1px
+	label
+		display: block
+	textarea
+		width: 100%
+		height: 160px
+		resize: none
+		border: none
+		border-radius: 2px
+		background: $primary
+		padding: 5px 10px
+		color: white
+	.form-group
+		position: relative
+		margin: 0 0 15px
+		label
+			position: absolute
+			bottom: 3px
+			left: 15px
+			color: white
+			z-index: 4
+			@include transition
+			&.active
+				bottom: 32px
+				left: 0
+				color: $primary
+		&.textarea
+			label
+				top: 30px
+				&.active
+					top: -2px
+		&.privacy-policy
+			position: relative
+			label
+				color: $primary
+				position: absolute
+				top: 15px
+				left: 30px
+				font-size: 17px
+				a
+					font-size: 17px
+			input[type="checkbox"]
+				position: absolute
+				top: -6px
+				left: 0
+
+// GOOGLE MAP
+
+.map
+	background: white
+	position: relative
+	z-index: 5
+	h2
+		margin: 35px auto
+	.google-map
+		iframe
+			width: 100%
+			height: 600px
+			margin-bottom: -7px
+
+
+// SCROLL TO TOP
+
+#scrollTop
+	position: fixed
+	z-index: 99
+	bottom: 10px
+	right: -100px
+	opacity: 0
+	border-radius: 50%
+	@include transition
+	&.active
+		transform: translateX(-110px)
+		opacity: 1
