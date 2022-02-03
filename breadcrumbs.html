@@ -1,45 +1,35 @@
+<!-- BREADCRUMBS -->
 <div class="breadcrumbs">
 	<div class="container">
 		<div class="content">
 			<ul>
-				<?php if(is_single()) : ?>
 				<li>
 					<a href="/">Home</a>
 				</li>
+				<?php if(is_single()) : ?>
+
 				<li>
 					<a href="/news-events/">
 						News &amp; Events
 					</a>
 				</li>
-				<li>
-					<?php the_title(); ?>
-				</li>
+
 				<?php elseif(is_home()) : ?>
-				<li>
-					<a href="/">Home</a>
-				</li>
-				<li>
-					News &amp; Events
-				</li>
+
 				<?php elseif(is_page() && $post->post_parent ) : ?>
-				<li>
-					<a href="/">Home</a>
-				</li>
+
 				<li>
 					<a href="<?php echo get_the_permalink($post->post_parent); ?>"><?php echo get_the_title($post->post_parent); ?></a>
 				</li>
-				<li>
-					<?php the_title(); ?>
-				</li>
+
 				<?php else : ?>
-				<li>
-					<a href="/">Home</a>
-				</li>
+
+				<?php endif; ?>
 				<li>
 					<?php the_title(); ?>
 				</li>
-				<?php endif; ?>
 			</ul>
 		</div>
 	</div>
 </div>
+<!-- BREADCRUMBS end -->
