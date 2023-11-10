@@ -1,0 +1,360 @@
+// COLORS
+$light: #fff
+$dark: #333
+$border: #e5e5e5
+
+$darkgrey: #7B7B7B
+$lightgrey: #e5e5e5
+
+$primary: #217db9  // LIGHT BLUE
+$secondary: #0d1f4d // DARK BLUE
+
+$third: #e91e63 // 	RED
+
+$shadow: rgba(0,0,0,0.3)
+
+
+// ww helper classes sass version 1.1
+
+// ***************************************** MIXINS
+@mixin radius
+	border-radius: 4px
+
+@mixin transition
+	transition: 0.4s
+
+@mixin transition-long
+	transition: 1.2s
+
+@mixin reset
+	margin: 0
+	padding: 0
+	box-sizing: border-box
+
+@mixin box-shadow
+	box-shadow: 0 0 15px rgba(0,0,0,0.5)
+
+@mixin xxl
+	@media only screen and (max-width: 1500px)
+		@content
+
+@mixin xl
+	@media only screen and (max-width: 1300px)
+		@content
+
+@mixin lg
+	@media only screen and (max-width: 1200px)
+		@content
+
+@mixin md
+	@media only screen and (max-width: 992px)
+		@content
+
+@mixin sm
+	@media only screen and (max-width: 768px)
+		@content
+
+@mixin xs
+	@media only screen and (max-width: 576px)
+		@content
+
+@mixin xxs
+	@media only screen and (max-width: 390px)
+		@content
+
+// ********************************************* HELPER CLASSES
+
+.desktop
+	display: block
+	&.xl
+		@include xl
+			display: none
+	&.lg
+		@include lg
+			display: none
+	&.md
+		@include md
+			display: none
+	&.sm
+		@include sm
+			display: none
+	&.xxs
+		@include xxs
+			display: none
+
+.mobile
+	display: none
+	&.xl
+		@include xl
+			display: block
+	&.lg
+		@include lg
+			display: block
+	&.md
+		@include md
+			display: block
+	&.sm
+		@include sm
+			display: block
+	&.xxs
+		@include xxs
+			display: block
+
+.text-left
+	text-align: left
+	*
+		margin-right: auto
+		margin-left: 0
+
+.text-right
+	text-align: right
+	*
+		margin-left: auto
+		margin-right: 0
+
+.m-text-left
+	@include md
+		text-align: left !important
+		*
+			margin-right: 0 !important
+
+.text-center
+	text-align: center
+
+.color-light
+	color: $light
+	*
+		color: $light
+	a:hover
+		color: darken($light,20%)
+
+.color-primary
+	color: $primary
+	*
+		color: $primary
+	a:hover
+		color: darken($primary,20%)
+
+.color-secondary
+	color: $secondary
+	*
+		color: $secondary
+	a:hover
+		color: darken($secondary,20%)
+
+// .color-lightblue
+	// color: $lightblue
+	// *
+		// color: $lightblue
+	// a:hover
+		// color: darken($lightblue,20%)
+
+.color-black
+	color: black
+
+.background-primary
+	background: $primary
+	border-color: $primary
+
+.background-secondary
+	background: $secondary
+	border-color: $secondary
+
+.background-light
+	background: $light
+	border-color: $light
+
+// .background-lightgrey
+	// background: $lightgrey
+	// border-color: $lightgrey
+
+.border-top
+	border-top: 3px solid $border
+
+.border-bottom
+	border-bottom: 3px solid $border
+
+.border-right
+	border-right: 3px solid $border
+
+.border-left
+	border-left: 3px solid $border
+	padding-left: 30px
+
+.border
+	border: 2px solid $border !important
+
+.col-primary
+	color: $primary
+
+.d-inline-block
+	display: inline-block
+
+.d-block
+	display: block
+
+.d-flex
+	display: flex
+
+.d-none
+	display: none
+
+.reset
+	@include reset
+
+.float-left
+	float: left
+
+.float-right
+	float: right
+
+.clear
+	clear: both
+
+.btn
+	display: inline-block
+	padding: 6px 25px
+	border: 2px solid transparent
+	cursor: pointer
+	font-size: 18px
+	font-weight: bold
+	text-transform: uppercase
+	@include radius
+	@include transition
+	&.with-icon
+		text-align: left
+		padding: 13px 33px 14px 52px
+		position: relative
+		&::before
+			position: absolute
+			top: 12px
+			margin-left: -30px
+			width: 22px
+			height: 20px
+			background-size: 20px
+			background-position: center
+			background-repeat: no-repeat
+			content: ''
+	&.btn-primary
+		background: $primary
+		color: $light
+		&:hover
+			background: darken($secondary, 10%)
+		&.transparent
+			background: transparent
+			color: $primary
+			border-color: $border
+			&:hover
+				background: $border
+	&.btn-secondary
+		background: $secondary
+		color: $light
+		&:hover
+			background: darken($secondary,10%)
+		&.transparent
+			background: transparent
+			color: $secondary
+			border-color: $border
+			&:hover
+				background: $border
+	&.btn-lightgrey
+		background: $lightgrey
+		color: $secondary
+		&:hover
+			background: darken($lightgrey,10%)
+
+.button-container
+	padding: 0 0 25px
+	&.horizontal
+		.btn,button,a,span,input
+			display: inline-block
+			width: auto
+		&.text-right
+			.btn,button,a,span,input
+				margin: 0
+				margin-left: 5px
+				@include md
+					margin: 10px 0
+		&.text-left
+			.btn,button,a,span,input
+				margin: 0
+				margin-right: 5px
+				@include md
+					margin: 10px 0
+
+button
+	@include reset
+	background: 	transparent
+	border: none
+
+hr
+	border: none
+	border-bottom: 3px solid $border
+hr.thin
+	border: none
+	border-bottom: 1px solid $border
+hr.thick
+	border: none
+	border-bottom: 5px solid $border
+
+.hide
+	@include reset
+	position: relative
+	z-index: -99
+	max-height: 0
+	opacity: 0
+	@include transition
+
+.hidden
+	display: none
+
+.vertical-align
+	*
+		display: inline-block
+		width: 100%
+.horizontal-align
+	*
+		display: inline-block
+		width: auto
+
+.square-box
+	position: relative
+	width: 100%
+	padding-bottom: 100%
+	> *
+		position: absolute
+		top: 0
+		left: 0
+		width: 100%
+		height: 100%
+
+.image
+	background-size: cover
+	background-position: center
+	background-repeat: no-repeat
+	&.contain
+		background-size: contain
+	&.fixed
+		background-attachment: fixed
+
+.round
+	border-radius: 50%
+
+.with-info-button
+	&.right
+		padding-right: 120px
+
+
+// INFO / TOOLTIP
+.show-tooltip
+	cursor: pointer
+	.info,
+	.tooltip
+		transform: scale(0)
+		transform-origin: top left
+		transition: 0.2s
+	&:hover
+		.info,
+		.tooltip
+			transition-delay: 0.5s
+			transform: scale(1)
