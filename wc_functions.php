@@ -1,7 +1,7 @@
-
 /**
  *  SWITCH ONSALE BADGE OFF
  */
+
 add_filter('woocommerce_sale_flash','ww_hide_sale_flash');
 function ww_hide_sale_flash() {
 	return false;
@@ -10,6 +10,7 @@ function ww_hide_sale_flash() {
 /**
  * Remove related products output
  */
+
 remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
 
 /**
@@ -48,6 +49,8 @@ add_filter( 'woocommerce_add_to_cart_fragments', 'cart_count_fragments', 10, 1 )
 /**
  * UPDATE CART ITEMS IN HEADER
  */
+
+// V1
 function cart_count_fragments( $fragments ) {
 	// ITEM COUNT
     $itemsInCart = WC()->cart->get_cart_contents_count();
@@ -59,6 +62,15 @@ function cart_count_fragments( $fragments ) {
     $cartTotal = WC()->cart->get_cart_contents_total();
 	$fragments['p.cart-total'] = '<p class="text-right cart-total color-primary 222"><strong>£'.number_format($cartTotal,2).'</strong></p>';
 
+    return $fragments;
+}
+
+// V2
+add_filter( 'woocommerce_add_to_cart_fragments', 'ww_cart_count_fragments', 10, 1 );
+
+function ww_cart_count_fragments( $fragments ) {
+    $fragments['footer .items-count'] = '<div class="items-count">'.WC()->cart->get_cart_contents_count() . ' item(s) in your basket</div>';
+		$fragments['header .items-count'] = '<div class="items-count">'.WC()->cart->get_cart_contents_count() . '</div>';
     return $fragments;
 }
 
@@ -91,4 +103,30 @@ function my_add_to_cart_function( $message, $product_id ) {
 add_filter('woocommerce_add_message', 'se53209949_woocommerce_add_message', 10, 0);
 function se53209949_woocommerce_add_message() {
     return __('Basket updated', 'woocommerce');
+}
+
+/**
+ *	Change SHIPPING to eg. DELIVERY
+ */
+add_filter( 'woocommerce_shipping_package_name', 'custom_shipping_package_name' );
+function custom_shipping_package_name( $name ) {
+return 'Delivery';
+}
+
+function fix_woocommerce_strings( $translated, $text) {
+// STRING 1
+$translated = str_ireplace( 'Shipping', 'Delivery charge', $translated );
+
+return $translated;
+}
+add_filter( 'gettext', 'fix_woocommerce_strings', 999, 3 );
+
+
+// CHANGE BASKET TO CART
+add_filter( 'gettext', 'ww_change_cart_to_basket' );
+add_filter( 'ngettext', 'ww_change_cart_to_basket' );
+
+function ww_change_cart_to_basket( $string ) {
+  $string = str_ireplace( 'cart', 'basket', $string );
+  return $string;
 }
