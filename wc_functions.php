@@ -1,5 +1,6 @@
+<?php
 /**
- *  SWITCH ONSALE BADGE OFF
+ *  Switch ONSALE BADGE off
  */
 
 add_filter('woocommerce_sale_flash','ww_hide_sale_flash');
@@ -34,6 +35,8 @@ function woocommerce_custom_product_add_to_cart_text() {
     return __( 'Add to basket', 'woocommerce' );
 }
 
+add_filter( 'gettext', 'my_text_strings', 20, 3 );
+add_filter( 'woocommerce_add_to_cart_fragments', 'cart_count_fragments', 10, 1 );
 function my_text_strings( $translated_text, $text, $domain ) {
   switch ( strtolower( $translated_text ) ) {
     case 'View Cart' :
@@ -42,9 +45,6 @@ function my_text_strings( $translated_text, $text, $domain ) {
     }
     return $translated_text;
 }
-add_filter( 'gettext', 'my_text_strings', 20, 3 );
-
-add_filter( 'woocommerce_add_to_cart_fragments', 'cart_count_fragments', 10, 1 );
 
 /**
  * UPDATE CART ITEMS IN HEADER
@@ -53,16 +53,16 @@ add_filter( 'woocommerce_add_to_cart_fragments', 'cart_count_fragments', 10, 1 )
 // V1
 function cart_count_fragments( $fragments ) {
 	// ITEM COUNT
-    $itemsInCart = WC()->cart->get_cart_contents_count();
+	$itemsInCart = WC()->cart->get_cart_contents_count();
 	$noun = " items";
 	if($itemsInCart==1) $noun = " item";
 	$fragments['p.cart-count'] = '<p class="text-right cart-count">'.$itemsInCart.$noun.'</p>';
 
 	// ITEM TOTAL
-    $cartTotal = WC()->cart->get_cart_contents_total();
+	$cartTotal = WC()->cart->get_cart_contents_total();
 	$fragments['p.cart-total'] = '<p class="text-right cart-total color-primary 222"><strong>£'.number_format($cartTotal,2).'</strong></p>';
 
-    return $fragments;
+	return $fragments;
 }
 
 // V2
@@ -122,7 +122,9 @@ return $translated;
 add_filter( 'gettext', 'fix_woocommerce_strings', 999, 3 );
 
 
-// CHANGE BASKET TO CART
+/**
+ * 	Change CART to BASKET
+ */
 add_filter( 'gettext', 'ww_change_cart_to_basket' );
 add_filter( 'ngettext', 'ww_change_cart_to_basket' );
 
